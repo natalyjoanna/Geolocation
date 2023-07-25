@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/node_modules/ol/ol.css">
+  <link rel="stylesheet" href="/styles/mapa.css">
+  <title>Mapa</title>
+</head>
+<body>
+  
+  <div id="info" style="display: none;"></div>
+  <form class="form-coordenadas" id="form">
+    <h5>Coordenadas</h5>
+    <input id="nombre" class="controls" type="text" name="nombre" value="" placeholder="Nombre">
+    <br>
+    <input id="latitud" class="controls" type="text" name="latitud" value="" placeholder="Latitud">
+    <input id="longitud" class="controls" type="text" name="longitud" value="" placeholder="Longitud">
+    <br>
+    <button type="submit" class="button">Mostrar</button>
+    <h3 id="nombreCoor">Mapa</h3>
+  </form>
+
+  <script>
+    const form = document.getElementById('form');
+    const longitud = document.getElementById('longitud');
+    const latitud = document.getElementById('latitud');
+    const nombre = document.getElementById('nombre');
+
+      form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const longValue = longitud.value;
+      const latValue = latitud.value;
+      const nombreValue = nombre.value;
+      
+
+      //nombre.innerHTML = nombreValue;
+
+      //localStorage.setItem('latitud', latValue);
+      //localStorage.setItem('longitud', longValue);
+      //localStorage.setItem('nombre', nombreValue)
+      //window.location = "/views/mapa.html"
+
+      if(latValue>=21.063037 && latValue <= 21.217722 && longValue >= -101.766096  && longValue <= -101.563747){
+ 
+        localStorage.setItem('latitud', latValue);
+        localStorage.setItem('longitud', longValue);
+        localStorage.setItem('nombre', nombreValue)
+        window.location = "/views/mapa.html"
+
+      }else{
+        alert('Ingrese coordenadas dentro del rango');
+      }
+
+
+    })
+
+
+    
+  </script>
+
+  <div id="map" class="map"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/elm-pep@1.0.6/dist/elm-pep.js"></script>
+    <script type="module" src="/javascript/mapa.js"></script>
+</body>
+</html>
